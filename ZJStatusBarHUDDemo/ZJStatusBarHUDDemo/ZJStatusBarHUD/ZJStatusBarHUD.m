@@ -56,15 +56,6 @@ static CGFloat const ZJEdgeInsets = 5;
     [UIView animateWithDuration:ZJDuration animations:^{
         window_.frame = windowFrame;
     }];
-    
-
-    // 停止上次定时器
-    [timer_ invalidate];
-    
-    // 开启定时器
-    timer_ = [NSTimer scheduledTimerWithTimeInterval:ZJTimeInterval target:self selector:@selector(hide) userInfo:nil repeats:NO];
-    
-
 }
 
 
@@ -74,15 +65,21 @@ static CGFloat const ZJEdgeInsets = 5;
 }
 
 + (void)showImage:(UIImage *)image text:(NSString *)text {
+    // 停止上次定时器
+    [timer_ invalidate];
+    
+    // 开启定时器
+    timer_ = [NSTimer scheduledTimerWithTimeInterval:ZJTimeInterval target:self selector:@selector(hide) userInfo:nil repeats:NO];
+    
     [self setupText:text image:image];
 }
 
 +(void)showSuccess:(NSString *)text{
-    [self setupText:text image:[UIImage imageNamed:@"ZJStatusBarHUD.bundle/success"]];
+    [self showImage:[UIImage imageNamed:@"ZJStatusBarHUD.bundle/success"] text:text];
 }
 
 + (void)showError:(NSString *)text{
-    [self setupText:text image:[UIImage imageNamed:@"ZJStatusBarHUD.bundle/error"]];
+    [self showImage:[UIImage imageNamed:@"ZJStatusBarHUD.bundle/error"] text:text];
 }
 
 + (void)showLoading:(NSString *)text{
