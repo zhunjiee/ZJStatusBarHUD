@@ -1,11 +1,14 @@
 # ZJStatusBarHUD
 It shows the location of some of the information in the status bar
 
+相关方法:
+
 ```
 /**
  *  显示自定义文字
  */
 + (void)showText:(NSString *)text;
+
 /**
  *  显示自定义文字和图片
  */
